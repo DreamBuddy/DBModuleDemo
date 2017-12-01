@@ -1,0 +1,45 @@
+platform :ios, '8.0'
+
+workspace 'ModuleApp'
+
+# 定义共同库
+def shared_pods
+    pod 'MGJRouter' #模块解耦
+end
+
+#Paths of all module
+project 'ModuleApp.project'
+project './Modules/ModuleCommon/ModuleCommon.project'
+project './Modules/ModuleOne/ModuleOne.project'
+project './Modules/ModuleTwo/ModuleTwo.project'
+
+target 'ModuleApp' do
+  # Pods for ModuleApp
+  shared_pods
+  # Path of ModuleApp
+  project 'ModuleApp.project'
+end
+
+# ModuleCommon 通用模块
+target 'ModuleCommon' do
+  # Pods for ModuleCommon
+  shared_pods
+  # Path of ModuleCommon
+  project './Modules/ModuleCommon/ModuleCommon.project'
+end
+
+# ModuleOne 模块1
+target 'ModuleOne' do
+    # Pods for ModuleOne
+    shared_pods
+    # Path of ModuleOne
+    project './Modules/ModuleOne/ModuleOne.project'
+end
+
+# ModuleTwo 模块2
+target 'ModuleTwo' do
+    # Pods for ModuleTwo
+    shared_pods
+    # Path of ModuleTwo
+    project './Modules/ModuleTwo/ModuleTwo.project'
+end
